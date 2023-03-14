@@ -1,3 +1,7 @@
+--liquibase formatted sql
+
+--changeset osipov:1
+
 create table hibernate_schema.persons
 (
     name           varchar(30) not null,
@@ -9,15 +13,13 @@ create table hibernate_schema.persons
     primary key (name, surname, age)
 );
 
-
 insert into hibernate_schema.persons (name, surname, age, phone_number, city_of_living)
 values ('Vasya', 'Petrov', 26, 89031111111, 'Moscow');
-
 insert into hibernate_schema.persons (name, surname, age, phone_number, city_of_living)
 values ('Petya', 'Vasin', 27, 89032222222, 'Piter');
-
 insert into hibernate_schema.persons (name, surname, age, phone_number, city_of_living)
 values ('Kolya', 'Ivanov', 28, 89033333333, 'Kostroma');
-
 insert into hibernate_schema.persons (name, surname, age, phone_number, city_of_living)
 values ('Ivan', 'Kolin', 29, 89034444444, 'Moscow');
+
+--rollback drop table persons;
