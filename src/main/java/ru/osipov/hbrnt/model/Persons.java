@@ -21,6 +21,6 @@ public class Persons {
     @Column(name = "phone_number", length = 11)
     String phoneNumber;
     @Column(name = "city_of_living", length = 30)
-    String CityOfLiving;
+    String cityOfLiving;
 }
 
