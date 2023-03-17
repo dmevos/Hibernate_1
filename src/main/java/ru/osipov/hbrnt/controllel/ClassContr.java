@@ -4,20 +4,32 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.osipov.hbrnt.model.Persons;
-import ru.osipov.hbrnt.repository.ClassRep;
+import ru.osipov.hbrnt.repository.MyCrudRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ClassContr {
-    final ClassRep rep;
 
-    public ClassContr(ClassRep rep) {
+    private final MyCrudRepository rep;
+
+    public ClassContr(MyCrudRepository rep) {
         this.rep = rep;
     }
 
-    @GetMapping("persons/by-city")
-    public List<Persons> getPersonByCity(@RequestParam String city) {
-        return rep.getPersonByCity(city);
+    @GetMapping("persons/by-city")  //http://localhost:8080/persons/by-city?city=Kostroma
+    public List<Persons> myListPersonsByCity(@RequestParam String city) {
+        return rep.getAllByCityOfLivingQuery(city);
+    }
+
+    @GetMapping("persons/by-age")  //http://localhost:8080/persons/by-age?age=29
+    public List<Persons> myListPersonsByAge(@RequestParam String age){
+        return rep.getAllByAgeLessThanOrderByAgeQuery(Integer.parseInt(age));
+    }
+
+    @GetMapping("persons/by-name_surname")  //http://localhost:8080/persons/by-name_surname?name=Dima3&surname=Dimych3
+    public Optional<Persons> myListPersonsByAge(@RequestParam String name, @RequestParam String surname){
+        return rep.getByNameAndSurnameJPQLQuery(name, surname);
     }
 }
