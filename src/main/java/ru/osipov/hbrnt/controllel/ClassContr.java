@@ -13,7 +13,7 @@ import java.util.Optional;
 @RestController
 public class ClassContr {
 
-    private MyCrudRepository rep;
+    private final MyCrudRepository rep;
 
     public ClassContr(MyCrudRepository rep) {
         this.rep = rep;

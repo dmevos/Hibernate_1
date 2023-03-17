@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface MyCrudRepository extends CrudRepository<Persons, ComposeKey> {
 
-    public List<Persons> findAllByCityOfLiving(String cityOfLiving);
-    public List<Persons> findAllByComposeKeyAgeLessThanOrderByComposeKeyAge(int age);
+    List<Persons> findAllByCityOfLiving(String cityOfLiving);
+    List<Persons> findAllByComposeKeyAgeLessThanOrderByComposeKeyAge(int age);
     Optional<Persons> findByComposeKeyNameAndComposeKeySurname(String name, String surname);
 }
